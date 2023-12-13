@@ -1,0 +1,233 @@
+show databases;
++--------------------+
+| Database      |
++--------------------+
+| information_schema |
+| mysql       |
+| performance_schema |
+| sys        |
+| temp_database   |
++--------------------+
+5 rows in set (0.20 sec)
+mysql> create database assignment1
+  -> ;
+Query OK, 1 row affected (0.01 sec)
+mysql> use assignment1
+Database changed
+mysql> create table student(roll_no int PRIMARY KEY,name varchar(25),branch varchar(30),city varchar(25),marks int);
+Query OK, 0 rows affected (0.03 sec)
+mysql> desc student
+  -> ;
++---------+-------------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int     | NO  | PRI | NULL  |    |
+| name  | varchar(25) | YES |   | NULL  |    |
+| branch | varchar(30) | YES |   | NULL  |    |
+| city  | varchar(25) | YES |   | NULL  |    |
+| marks  | int     | YES |   | NULL  |    |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.21 sec)
+mysql> INSERT INTO student (roll_no, name, division, branch, city, marks)
+  -> VALUES (1, 'John Doe', 'A', 'Computer Science', 'New York', 95.5);
+ERROR 1054 (42S22): Unknown column 'division' in 'field list'
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (1, 'atharva', 'A', 'Computer Science', 'New York',95);
+ERROR 1054 (42S22): Unknown column 'division' in 'field list'
+mysql> ALTER TABLE student ADD division VARCHAR(10);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0 Duplicates: 0 Warnings: 0
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (1, 'atharva', 'A', 'Computer Science', 'New York',95);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (2, 'srasti', 'B', 'Computer', 'Nek',97);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (3, 'jay', 'C', 'Libeya', 'Pune',30);
+Query OK, 1 row affected (0.04 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (4, 'navnnett', 'E', 'Electronics', 'Mumbai',45);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (5, 'lemon', 'E', 'IT', 'Mumbai',45);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (6, 'anany', 'F', 'IT', 'Amravati',12);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (7, 'JAY SHAH', 'A', 'Intrumentation', 'Wadgaonsheri',87);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (8, 'Atharva King', 'A', 'Intrumentation', 'Wadgaonsheri',87);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (9, 'Srasti tttt', 'FE', 'Mechanical', 'WadgaonDi',57);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student (roll_no,name,division, branch, city, marks) values (10, 'naveen ju', 'BE', 'Civil', 'WadgaonDi',57);
+Query OK, 1 row affected (0.01 sec)
+mysql> desc student
+  -> ;
++----------+-------------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| roll_no | int     | NO  | PRI | NULL  |    |
+| name   | varchar(25) | YES |   | NULL  |    |
+| branch  | varchar(30) | YES |   | NULL  |    |
+| city   | varchar(25) | YES |   | NULL  |    |
+| marks  | int     | YES |   | NULL  |    |
+| division | varchar(10) | YES |   | NULL  |    |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+mysql> select * from student
+  -> ;
++---------+--------------+------------------+--------------+-------+----------+
+| roll_no | name     | branch      | city     | marks | division |
++---------+--------------+------------------+--------------+-------+----------+
+|    1 | atharva   | Computer Science | New York   |  95 | A    |
+|    2 | srasti    | Computer     | Nek     |  97 | B    |
+|    3 | jay     | Libeya      | Pune     |  30 | C    |
+|    4 | navnnett   | Electronics   | Mumbai    |  45 | E    |
+|    5 | lemon    | IT        | Mumbai    |  45 | E    |
+|    6 | anany    | IT        | Amravati   |  12 | F    |
+|    7 | JAY SHAH   | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    8 | Atharva King | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    9 | Srasti tttt | Mechanical    | WadgaonDi  |  57 | FE    |
+|   10 | naveen ju  | Civil      | WadgaonDi  |  57 | BE    |
++---------+--------------+------------------+--------------+-------+----------+
+10 rows in set (0.00 sec)
+mysql> select name,city from student
+  -> ;
++--------------+--------------+
+| name     | city     |
++--------------+--------------+
+| atharva   | New York   |
+| srasti    | Nek     |
+| jay     | Pune     |
+| navnnett   | Mumbai    |
+| lemon    | Mumbai    |
+| anany    | Amravati   |
+| JAY SHAH   | Wadgaonsheri |
+| Atharva King | Wadgaonsheri |
+| Srasti tttt | WadgaonDi  |
+| naveen ju  | WadgaonDi  |
++--------------+--------------+
+10 rows in set (0.00 sec)
+mysql> select distinct name from student;
++--------------+
+| name     |
++--------------+
+| atharva   |
+| srasti    |
+| jay     |
+| navnnett   |
+| lemon    |
+| anany    |
+| JAY SHAH   |
+| Atharva King |
+| Srasti tttt |
+| naveen ju  |
++--------------+
+10 rows in set (0.01 sec)
+mysql> select * from student
+  -> ;
++---------+--------------+------------------+--------------+-------+----------+
+| roll_no | name     | branch      | city     | marks | division |
++---------+--------------+------------------+--------------+-------+----------+
+|    1 | atharva   | Computer Science | New York   |  95 | A    |
+|    2 | srasti    | Computer     | Nek     |  97 | B    |
+|    3 | jay     | Libeya      | Pune     |  30 | C    |
+|    4 | navnnett   | Electronics   | Mumbai    |  45 | E    |
+|    5 | lemon    | IT        | Mumbai    |  45 | E    |
+|    6 | anany    | IT        | Amravati   |  12 | F    |
+|    7 | JAY SHAH   | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    8 | Atharva King | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    9 | Srasti tttt | Mechanical    | WadgaonDi  |  57 | FE    |
+|   10 | naveen ju  | Civil      | WadgaonDi  |  57 | BE    |
++---------+--------------+------------------+--------------+-------+----------+
+10 rows in set (0.00 sec)
+mysql> select name from student where marks > 75;
++--------------+
+| name     |
++--------------+
+| atharva   |
+| srasti    |
+| JAY SHAH   |
+| Atharva King |
++--------------+
+4 rows in set (0.00 sec)
+mysql> select * from student where marks > 75;
++---------+--------------+------------------+--------------+-------+----------+
+| roll_no | name     | branch      | city     | marks | division |
++---------+--------------+------------------+--------------+-------+----------+
+|    1 | atharva   | Computer Science | New York   |  95 | A    |
+|    2 | srasti    | Computer     | Nek     |  97 | B    |
+|    7 | JAY SHAH   | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    8 | Atharva King | Intrumentation  | Wadgaonsheri |  87 | A    |
++---------+--------------+------------------+--------------+-------+----------+
+4 rows in set (0.00 sec)
+mysql> select * from student where name like 'S%';
++---------+-------------+------------+-----------+-------+----------+
+| roll_no | name    | branch   | city   | marks | division |
++---------+-------------+------------+-----------+-------+----------+
+|    2 | srasti   | Computer  | Nek    |  97 | B    |
+|    9 | Srasti tttt | Mechanical | WadgaonDi |  57 | FE    |
++---------+-------------+------------+-----------+-------+----------+
+2 rows in set (0.00 sec)
+mysql> select * from student where marks >= 50 and marks <= 60;
++---------+-------------+------------+-----------+-------+----------+
+| roll_no | name    | branch   | city   | marks | division |
++---------+-------------+------------+-----------+-------+----------+
+|    9 | Srasti tttt | Mechanical | WadgaonDi |  57 | FE    |
+|   10 | naveen ju  | Civil   | WadgaonDi |  57 | BE    |
++---------+-------------+------------+-----------+-------+----------+
+2 rows in set (0.00 sec)
+mysql> select * from student where branch = 'IT' and city = 'Pune';
+Empty set (0.00 sec)
+mysql> udpate student set branch = 'IT' where roll_no = 9;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'udpate student set branch = 'IT' where roll_no = 9' at line 1
+mysql> update student set branch = 'IT' where roll_no = 9;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1 Changed: 1 Warnings: 0
+mysql> select branch from student where roll_no = 9;
++--------+
+| branch |
++--------+
+| IT   |
++--------+
+1 row in set (0.00 sec)
+mysql> delete from student where division = 'BE';
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from student;
++---------+--------------+------------------+--------------+-------+----------+
+| roll_no | name     | branch      | city     | marks | division |
++---------+--------------+------------------+--------------+-------+----------+
+|    1 | atharva   | Computer Science | New York   |  95 | A    |
+|    2 | srasti    | Computer     | Nek     |  97 | B    |
+|    3 | jay     | Libeya      | Pune     |  30 | C    |
+|    4 | navnnett   | Electronics   | Mumbai    |  45 | E    |
+|    5 | lemon    | IT        | Mumbai    |  45 | E    |
+|    6 | anany    | IT        | Amravati   |  12 | F    |
+|    7 | JAY SHAH   | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    8 | Atharva King | Intrumentation  | Wadgaonsheri |  87 | A    |
+|    9 | Srasti tttt | IT        | WadgaonDi  |  57 | FE    |
++---------+--------------+------------------+--------------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> create table TE_Students(roll_no int PRIMARY KEY,name varchar(25));
+Query OK, 0 rows affected (0.01 sec)
+mysql> desc TE_Students
+  -> ;
++---------+-------------+------+-----+---------+-------+
+| Field  | Type    | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int     | NO  | PRI | NULL  |    |
+| name  | varchar(25) | YES |   | NULL  |    |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+mysql> select roll_no from students UNION select roll_no from TE_Students;
+ERROR 1146 (42S02): Table 'assignment1.students' doesn't exist
+mysql> select roll_no from student UNION select roll_no from TE_Students;
++---------+
+| roll_no |
++---------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
+|    5 |
+|    6 |
+|    7 |
+|    8 |
+|    9 |
++---------+
+9 rows in set (0.00 sec)
